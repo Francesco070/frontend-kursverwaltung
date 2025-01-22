@@ -1,10 +1,13 @@
 <template>
-  <v-card>
-    <v-card-text>
-      <p>Hello</p>
-    </v-card-text>
-    <v-card-actions>
-      <v-btn color="primary" >OK</v-btn>
-    </v-card-actions>
-  </v-card>
+  <v-container>
+    <v-layout>
+      <SideBar></SideBar>
+      <v-container>
+        <router-view></router-view>
+      </v-container>
+    </v-layout>
+  </v-container>
 </template>
+<script setup lang="ts">
+import SideBar from "./components/SideBar.vue";
+</script>
