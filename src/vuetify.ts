@@ -11,6 +11,9 @@ export default createVuetify({
             elevation: 0,
             border: 0,
         },
+        VCard: {
+            color: "background"
+        },
     },
     theme: {
         defaultTheme: 'dark', // Standard: Darkmode
