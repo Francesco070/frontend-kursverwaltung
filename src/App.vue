@@ -15,4 +15,21 @@
 
 <script setup lang="ts">
 import SideBar from "./components/SideBar.vue";
+import {useTheme} from "vuetify";
+import {computed, watch} from "vue";
+
+
+const theme = useTheme();
+const isDarkMode = computed(() => theme.global.current.value.dark);
+
+watch(isDarkMode, () => {
+  if (isDarkMode.value) {
+    document.body.classList.add("bg-dark");
+    document.body.classList.remove("bg-light");
+  } else {
+    document.body.classList.add("bg-light");
+    document.body.classList.remove("bg-dark");
+
+  }
+}, {immediate: true})
 </script>

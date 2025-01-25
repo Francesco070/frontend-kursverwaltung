@@ -50,12 +50,12 @@ const content = computed(() => {
 }
 
 .markdown-body-dark h2 {
-  color: #fab387;
+  color: #cba6f7;
   font-size: 2rem;
 }
 
 .markdown-body-dark h3 {
-  color: #a6e3a1;
+  color: #fab387;
   font-size: 1.75rem;
 }
 
@@ -155,7 +155,7 @@ const content = computed(() => {
 }
 
 .markdown-body-light {
-  background-color: #eff1f5;
+  background-color: #f3ede9;
   color: #4c4f69;
   font-family: Arial, sans-serif;
   line-height: 1.8;
@@ -178,12 +178,12 @@ const content = computed(() => {
 }
 
 .markdown-body-light h2 {
-  color: #d20f39;
+  color: #7287fd;
   font-size: 2rem;
 }
 
 .markdown-body-light h3 {
-  color: #40a02b;
+  color: #fe640b;
   font-size: 1.75rem;
 }
 
@@ -227,12 +227,12 @@ const content = computed(() => {
 }
 
 .markdown-body-light th {
-  background-color: #e6e9ef;
+  background-color: #7b503f;
   color: #7287fd;
 }
 
 .markdown-body-light td {
-  background-color: #f5f7fa;
+  background-color: #f3dbc9;
 }
 
 .markdown-body-light strong {
@@ -251,14 +251,14 @@ const content = computed(() => {
 
 
 .markdown-body-light code {
-  background-color: #e6e9ef;
-  color: #d20f39;
+  background-color: #f3dbc9;
+  color: #7287fd;
   padding: 0.2rem 0.4rem;
   border-radius: 0.3rem;
 }
 
 .markdown-body-light pre {
-  background-color: #e6e9ef;
+  background-color: #f3dbc9;
   color: #7287fd;
   padding: 1rem;
   margin: 1rem;
@@ -269,7 +269,7 @@ const content = computed(() => {
 .markdown-body-light blockquote {
   border-left: 4px solid #df8e1d;
   color: #df8e1d;
-  background-color: #e6e9ef;
+  background-color: #f3dbc9;
   padding: 1rem;
   margin: 1rem;
   border-radius: 1.25rem;

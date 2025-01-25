@@ -35,9 +35,9 @@ export default createVuetify({
                 dark: false, // Lightmode
                 colors: {
                     primary: '#7287fd',
-                    secondary: '#d20f39',
-                    background: '#eff1f5',
-                    surface: '#e6e9ef',
+                    secondary: '#fe640b',
+                    background: '#f3ede9',
+                    surface: '#7b503f',
                     error: '#d20f39',
                     info: '#04a5e5',
                     success: '#40a02b',

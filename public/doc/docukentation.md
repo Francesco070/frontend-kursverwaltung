@@ -43,6 +43,12 @@ inspiration for Markdown's syntax is the format of plain text email.
 
 ## Block Elements
 
+| Month    | Savings |
+|----------|---------|
+| January  | $250    |
+| February | $80     |
+| March    | $420    |
+
 ### Paragraphs and Line Breaks
 
 A paragraph is simply one or more consecutive lines of text, separated
