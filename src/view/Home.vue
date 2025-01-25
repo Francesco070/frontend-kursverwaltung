@@ -104,7 +104,7 @@ const content = computed(() => {
 }
 
 .markdown-body-dark td {
-  background-color: #2a273f;
+  background-color: #181825;
 }
 
 .markdown-body-dark strong {
