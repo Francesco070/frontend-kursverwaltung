@@ -18,7 +18,7 @@ import {marked} from 'marked';
 const theme = useTheme();
 const isDarkMode = computed(() => theme.global.current.value.dark);
 
-const {data} = useFetch('/doc/docukentation.md').get();
+const {data} = useFetch('/doc/docFile.md').get();
 
 const content = computed(() => {
   return (typeof data.value === 'string') ? marked(data.value) : "";
