@@ -14,6 +14,15 @@ export default createVuetify({
         VCard: {
             color: "background"
         },
+        VTextField: {
+            variant: "solo",
+        },
+        VDataTable: {
+            style: "border-radius: 24px"
+        },
+        VCheckbox: {
+            color: "primary"
+        }
     },
     theme: {
         defaultTheme: 'dark', // Standard: Darkmode

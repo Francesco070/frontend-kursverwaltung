@@ -9,6 +9,7 @@
         </v-col>
         <v-spacer></v-spacer>
       </v-row>
+      <CustomSnackBar/>
     </v-layout>
   </v-container>
 </template>
@@ -17,6 +18,7 @@
 import SideBar from "./components/SideBar.vue";
 import {useTheme} from "vuetify";
 import {computed, watch} from "vue";
+import CustomSnackBar from "./components/CustomSnackBar.vue";
 
 
 const theme = useTheme();
