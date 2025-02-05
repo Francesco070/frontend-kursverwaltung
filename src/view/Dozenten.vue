@@ -30,11 +30,15 @@
       </v-expand-transition>
 
       <v-expand-transition>
-        <v-row v-if="!showFilters && selected.length > 0">
+        <v-row>
           <v-col>
-            <v-btn @click="deleteDozenten()" class="me-4" color="primary" icon="mdi-delete">
+            <v-btn class="rounded-s-xl" rounded="0" color="primary" icon="mdi-plus">
             </v-btn>
-            <v-btn v-if="selected.length === 1" color="primary" icon="mdi-pencil">
+            <v-btn rounded="0" :disabled="selected.length !== 1" color="primary" icon="mdi-pencil">
+            </v-btn>
+            <v-btn rounded="0" @click="deleteDozenten()" :disabled="selected.length > 1" class="rounded-e-xl"
+                   color="primary"
+                   icon="mdi-delete">
             </v-btn>
           </v-col>
         </v-row>
@@ -67,8 +71,6 @@ import {computed, ref} from "vue";
 import {useFetch} from "@vueuse/core";
 import {useDisplay} from "vuetify";
 import {useSnackBar} from "../stores/snackBarStore.ts";
-
-const {setSnackBar} = useSnackBar();
 
 const search = ref<string>("");
 
@@ -111,12 +113,12 @@ async function deleteDozenten() {
   let errorInDeleteDozenten = false;
 
   for (const selectedId of selected.value) {
-    const {execute, error, data} = useFetch(`${url}/${selectedId}`).delete().json();
+    const {execute, error, data} = useFetch(`${url}/${selectedId}`, {immediate: false}).delete().json();
 
-    await execute(); // Warten auf die Ausführung der Anfrage
+    await execute();
 
     if (error.value) {
-      addSnackBar('error', `Fehler beim Löschen von Dozent ${selectedId}: ${error.value}`);
+      addSnackBar('error', `Fehler beim Löschen von Dozent ${selectedId}`);
       errorInDeleteDozenten = true;
     } else if (data.value && data.value["status"] === "error") {
       addSnackBar('error', `Fehler beim Löschen von Dozent ${selectedId}: ${data.value["message"]}`);

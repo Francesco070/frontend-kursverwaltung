@@ -4,51 +4,35 @@ import {defineStore} from 'pinia';
 type SnackBarType = 'error' | 'success' | 'warning';
 
 interface SnackBarItem {
-    id: number;
     type: SnackBarType;
     message: string;
     show: boolean;
 }
 
 export const useSnackBar = defineStore('snackBar', () => {
-    const snackbars = ref<SnackBarItem[]>([]);
-    let nextId = 0;
+    const snackbar = ref<SnackBarItem | null>(null);
 
     function addSnackBar(type: SnackBarType, message: string) {
-        if (type === 'error') {
-            const currentErrors = snackbars.value.filter(
-                (snack) => snack.type === 'error' && snack.show
-            );
-            if (currentErrors.length >= 3) return;
-        }
-
-        const id = nextId++;
-        snackbars.value.push({
-            id,
-            type,
-            message,
-            show: true,
-        });
+        snackbar.value = {type, message, show: true};
 
         setTimeout(() => {
-            removeSnackBar(id);
+            removeSnackBar();
         }, 5000);
     }
 
-    function removeSnackBar(id: number) {
-        const index = snackbars.value.findIndex((snack) => snack.id === id);
-        if (index !== -1) {
-            snackbars.value[index].show = false;
+    function removeSnackBar() {
+        if (snackbar.value) {
+            snackbar.value.show = false;
             setTimeout(() => {
-                snackbars.value = snackbars.value.filter((snack) => snack.id !== id);
+                snackbar.value = null;
             }, 300);
         }
     }
 
-    const getSnackBars = computed(() => snackbars.value);
+    const getSnackBar = computed(() => snackbar.value);
 
     return {
-        getSnackBars,
+        getSnackBar,
         addSnackBar,
         removeSnackBar,
     };

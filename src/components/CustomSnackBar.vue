@@ -1,19 +1,18 @@
 <template>
   <v-snackbar
-      v-for="snackbar in getSnackBars"
-      :key="snackbar.id"
-      v-model="snackbar.show"
-      :color="getColor(snackbar.type)"
+      v-if="getSnackBar !== null"
+      v-model="getSnackBar.show"
+      :color="getColor(getSnackBar.type)"
       :timeout="5000"
       class="mb-2"
       location="bottom"
   >
-    {{ snackbar.message }}
+    {{ getSnackBar?.message }}
     <template v-slot:actions>
       <v-btn
           variant="text"
           icon="mdi-close"
-          @click="removeSnackBar(snackbar.id)"
+          @click="removeSnackBar"
       ></v-btn>
     </template>
   </v-snackbar>
@@ -21,8 +20,11 @@
 
 <script setup lang="ts">
 import {useSnackBar} from "../stores/snackBarStore";
+import {storeToRefs} from "pinia";
 
-const {getSnackBars, removeSnackBar} = useSnackBar();
+const snackBarStore = useSnackBar()
+const {getSnackBar} = storeToRefs(snackBarStore)
+const {removeSnackBar} = snackBarStore
 
 function getColor(type: 'error' | 'success' | 'warning'): string {
   switch (type) {
