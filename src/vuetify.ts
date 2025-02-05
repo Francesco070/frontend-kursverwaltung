@@ -16,13 +16,19 @@ export default createVuetify({
         },
         VTextField: {
             variant: "solo",
+            flat: true,
+        },
+        VSelect: {
+            variant: "solo",
+            flat: true,
+            itemColor: "primary"
         },
         VDataTable: {
-            style: "border-radius: 24px"
+            style: "border-radius: 24px",
         },
         VCheckbox: {
             color: "primary"
-        }
+        },
     },
     theme: {
         defaultTheme: 'dark', // Standard: Darkmode

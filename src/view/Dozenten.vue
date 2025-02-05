@@ -32,17 +32,25 @@
       <v-expand-transition>
         <v-row>
           <v-col>
-            <v-btn class="rounded-s-xl" rounded="0" color="primary" icon="mdi-plus">
+            <v-btn class="rounded-s-xl" rounded="0" color="primary" icon="mdi-plus" @click="AddDozentDialog = true">
             </v-btn>
-            <v-btn rounded="0" :disabled="selected.length !== 1" color="primary" icon="mdi-pencil">
+            <v-btn rounded="0" :disabled="selected.length !== 1" color="primary" icon="mdi-pencil"
+                   @click="EditDozentDialog = true">
             </v-btn>
-            <v-btn rounded="0" @click="deleteDozenten()" :disabled="selected.length > 1" class="rounded-e-xl"
+            <v-btn rounded="0" @click="deleteDozenten()" :disabled="selected.length === 0" class="rounded-e-xl"
                    color="primary"
                    icon="mdi-delete">
             </v-btn>
           </v-col>
         </v-row>
       </v-expand-transition>
+
+      <AddDozenten :addDozentDialog="AddDozentDialog" @update:addDozentDialog="AddDozentDialog = $event"/>
+      <EditDozenten v-if="selected.length === 1"
+                    :dozentenId="selected[0]"
+                    :editDozentDialog="EditDozentDialog"
+                    @update:editDozentDialog="EditDozentDialog = $event"/>
+
 
       <v-row>
         <v-col>
@@ -51,11 +59,11 @@
               mobile-breakpoint="lg"
               v-model="selected"
               :headers="filteredHeader"
-              :items="dozenten"
+              :items="getDozenten"
               item-value="id_dozent"
               show-select
               :search="search"
-              :loading="loading"
+              :loading="useDozentenStore.loading"
               hover
               :mobile="isMobile"
               :sort-by="[{ key: 'id_dozent', order: 'asc' }]"
@@ -71,8 +79,15 @@ import {computed, ref} from "vue";
 import {useFetch} from "@vueuse/core";
 import {useDisplay} from "vuetify";
 import {useSnackBar} from "../stores/snackBarStore.ts";
+import {useDozenten} from "../stores/dozentenStore.ts";
+import {storeToRefs} from "pinia";
+import AddDozenten from "../components/dozenten/AddDozenten.vue";
+import EditDozenten from "../components/dozenten/EditDozenten.vue";
 
 const search = ref<string>("");
+
+const AddDozentDialog = ref<boolean>(false)
+const EditDozentDialog = ref<boolean>(false)
 
 const {lgAndUp} = useDisplay();
 const isMobile = computed(() => !lgAndUp.value);
@@ -97,10 +112,9 @@ const header = ref([
 ]);
 
 const url = import.meta.env.VITE_API_URL + "/dozenten";
-const {data, isFetching: loading, execute: getDozenten} = useFetch(url).get().json();
 
-
-const dozenten = computed(() => (data.value && !loading.value) ? data?.value["data"] : []);
+const useDozentenStore = useDozenten()
+const {getDozenten} = storeToRefs(useDozentenStore)
 
 const filteredHeader = computed(() => header.value.filter(item => activeFilters.value.includes(item.value)));
 
@@ -118,10 +132,10 @@ async function deleteDozenten() {
     await execute();
 
     if (error.value) {
-      addSnackBar('error', `Fehler beim Löschen von Dozent ${selectedId}`);
+      addSnackBar('error', `Fehler beim löschen von Dozent ${selectedId}`);
       errorInDeleteDozenten = true;
     } else if (data.value && data.value["status"] === "error") {
-      addSnackBar('error', `Fehler beim Löschen von Dozent ${selectedId}: ${data.value["message"]}`);
+      addSnackBar('error', `Fehler beim löschen von Dozent ${selectedId}: ${data.value["message"]}`);
       errorInDeleteDozenten = true;
     }
   }
@@ -131,7 +145,7 @@ async function deleteDozenten() {
   }
 
   selected.value = [];
-  await getDozenten();
+  await useDozentenStore.execute();
 }
 
 </script>
