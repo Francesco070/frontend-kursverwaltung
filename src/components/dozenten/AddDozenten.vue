@@ -147,7 +147,7 @@ async function addDozent() {
   }
 
   if (!errorInAddDozenten) {
-    addSnackBar('success', 'Dozenten erfolgreich hinzugefügt.');
+    addSnackBar('success', 'Dozent erfolgreich hinzugefügt.');
   }
 
   await useDozentenStore.execute();

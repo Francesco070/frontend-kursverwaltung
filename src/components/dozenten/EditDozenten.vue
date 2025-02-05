@@ -152,7 +152,7 @@ async function editDozent() {
   }
 
   if (!errorInEditDozenten) {
-    addSnackBar('success', 'Dozenten erfolgreich bearbeitet.');
+    addSnackBar('success', 'Dozent erfolgreich bearbeitet.');
   }
 
   await useDozentenStore.execute();
