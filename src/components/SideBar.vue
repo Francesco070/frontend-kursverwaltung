@@ -12,6 +12,13 @@
                      value="lehrbetriebe"></v-list-item>
         <v-list-item color="primary" to="/lernende" prepend-icon="mdi-account-school" title="Lernende"
                      value="lernende"></v-list-item>
+        <v-divider></v-divider>
+        <v-list-item color="primary" to="/kurs-lernende" prepend-icon="mdi-clipboard-list"
+                     title="Kurs zu Lernende"
+                     value="kurs-lernende"></v-list-item>
+        <v-list-item color="primary" to="/lehrbetrieb-lernende" prepend-icon="mdi-school"
+                     title="Lehrbetrieb zu Lernende"
+                     value="lehrbetrieb-lernende"></v-list-item>
       </v-list>
     </div>
 

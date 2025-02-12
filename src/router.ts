@@ -6,6 +6,8 @@ import Kurse from "./view/Kurse.vue";
 import Laender from "./view/Laender.vue";
 import Lehrbetriebe from "./view/Lehrbetriebe.vue";
 import Lernende from "./view/Lernende.vue";
+import KursLernende from "./view/KursLernende.vue";
+import LehrbetriebLernende from "./view/LehrbetriebLernende.vue";
 
 
 const routes: Array<RouteRecordRaw> = [
@@ -38,6 +40,16 @@ const routes: Array<RouteRecordRaw> = [
         path: '/lernende',
         name: 'Lernende',
         component: Lernende,
+    },
+    {
+        path: '/kurs-lernende',
+        name: 'KursLernende',
+        component: KursLernende,
+    },
+    {
+        path: '/lehrbetrieb-lernende',
+        name: 'LehrbetriebLernende',
+        component: LehrbetriebLernende,
     },
     {
         path: '/:pathMatch(.*)*',
