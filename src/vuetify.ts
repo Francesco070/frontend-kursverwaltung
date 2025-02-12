@@ -18,6 +18,10 @@ export default createVuetify({
             variant: "solo",
             flat: true,
         },
+        VTextarea: {
+            variant: "solo",
+            flat: true,
+        },
         VSelect: {
             variant: "solo",
             flat: true,

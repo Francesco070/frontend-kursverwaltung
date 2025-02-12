@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import type { RouteRecordRaw } from 'vue-router';
+import type {RouteRecordRaw} from 'vue-router';
+import {createRouter, createWebHistory} from 'vue-router';
 import Home from "./view/Home.vue";
 import Dozenten from "./view/Dozenten.vue";
 import Kurse from "./view/Kurse.vue";
@@ -39,6 +39,11 @@ const routes: Array<RouteRecordRaw> = [
         name: 'Lernende',
         component: Lernende,
     },
+    {
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: () => import('./view/NotFound.vue'),
+    }
 ];
 
 const router = createRouter({
