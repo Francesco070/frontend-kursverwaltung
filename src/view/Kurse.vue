@@ -67,7 +67,11 @@
               hover
               :mobile="isMobile"
               :sort-by="[{ key: 'id_kurs', order: 'asc' }]"
-          ></v-data-table>
+          >
+            <template v-slot:item.dozent="{ item }">
+              <v-chip v-if="item.dozent" color="secondary" class="ma-1">{{ item.dozent }}</v-chip>
+            </template>
+          </v-data-table>
         </v-col>
       </v-row>
     </v-card-text>
