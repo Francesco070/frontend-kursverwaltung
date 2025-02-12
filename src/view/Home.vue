@@ -4,7 +4,9 @@
       <h1>Home</h1>
     </v-card-title>
     <v-card-text>
-      <div v-html="content" :class="isDarkMode ? 'markdown-body-dark' : 'markdown-body-light'"></div>
+      <v-skeleton-loader style="border-radius: 24px" :loading="loading" type="article">
+        <div v-html="content" :class="isDarkMode ? 'markdown-body-dark' : 'markdown-body-light'"></div>
+      </v-skeleton-loader>
     </v-card-text>
   </v-card>
 </template>
@@ -18,7 +20,7 @@ import {marked} from 'marked';
 const theme = useTheme();
 const isDarkMode = computed(() => theme.global.current.value.dark);
 
-const {data} = useFetch('/doc/docFile.md').get();
+const {data, isFetching: loading} = useFetch('/doc/docFile.md').get();
 
 const content = computed(() => {
   return (typeof data.value === 'string') ? marked(data.value) : "";

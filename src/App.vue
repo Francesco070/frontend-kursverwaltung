@@ -17,21 +17,23 @@
 <script setup lang="ts">
 import SideBar from "./components/SideBar.vue";
 import {useTheme} from "vuetify";
-import {computed, watch} from "vue";
+import {computed, onMounted, watch} from "vue";
 import CustomSnackBar from "./components/CustomSnackBar.vue";
 
+const theme = useTheme()
+const isDarkMode = computed(() => theme.global.current.value.dark)
 
-const theme = useTheme();
-const isDarkMode = computed(() => theme.global.current.value.dark);
-
-watch(isDarkMode, () => {
+const updateBodyClass = () => {
   if (isDarkMode.value) {
-    document.body.classList.add("bg-dark");
-    document.body.classList.remove("bg-light");
+    document.body.classList.add("bg-dark")
+    document.body.classList.remove("bg-light")
   } else {
-    document.body.classList.add("bg-light");
-    document.body.classList.remove("bg-dark");
-
+    document.body.classList.add("bg-light")
+    document.body.classList.remove("bg-dark")
   }
-}, {immediate: true})
+}
+
+watch(isDarkMode, updateBodyClass, {immediate: true})
+
+onMounted(updateBodyClass)
 </script>

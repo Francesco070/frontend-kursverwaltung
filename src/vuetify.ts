@@ -35,7 +35,7 @@ export default createVuetify({
         },
     },
     theme: {
-        defaultTheme: 'dark', // Standard: Darkmode
+        defaultTheme: localStorage.getItem('theme') || 'dark', // Standard: Darkmode
         themes: {
             dark: {
                 dark: true, // Darkmode
@@ -56,7 +56,7 @@ export default createVuetify({
                     primary: '#7287fd',
                     secondary: '#fe640b',
                     background: '#f3ede9',
-                    surface: '#7b503f',
+                    surface: '#dcc1a7',
                     error: '#d20f39',
                     info: '#04a5e5',
                     success: '#40a02b',
