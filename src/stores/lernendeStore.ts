@@ -2,14 +2,14 @@ import {computed} from 'vue';
 import {defineStore} from 'pinia';
 import {useFetch} from "@vueuse/core";
 
-export const useLernende = defineStore('lernende', () => {
+export const useLernenden = defineStore('lernenden', () => {
     const url = import.meta.env.VITE_API_URL + "/lernende";
     const {data, isFetching: loading, execute} = useFetch(url).get().json();
 
-    const getLernende = computed(() => (data.value && !loading.value) ? data?.value["data"] : [])
+    const getLernenden = computed(() => (data.value && !loading.value) ? data?.value["data"] : [])
 
     return {
-        getLernende,
+        getLernenden,
         loading,
         execute
     };
