@@ -68,7 +68,7 @@
               :loading="useKursLernendeStore.loading"
               hover
               :mobile="isMobile"
-              :sort-by="[{ key: 'id_kurs_lernende', order: 'asc' }]"
+              :sort-by="[{ key: 'kursthema', order: 'asc' }]"
           >
             <template v-slot:item.lernende="{ item }">
               <v-chip v-if="item.lernende" color="secondary" class="ma-1">{{ item.lernende }}</v-chip>

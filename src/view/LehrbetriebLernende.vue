@@ -69,7 +69,7 @@
               :loading="useLehrbetriebLernendeStore.loading"
               hover
               :mobile="isMobile"
-              :sort-by="[{ key: 'id_lehrbetrieb_lernende', order: 'asc' }]"
+              :sort-by="[{ key: 'firma', order: 'asc' }]"
           >
             <template v-slot:item.lernende="{ item }">
               <v-chip v-if="item.lernende" color="secondary" class="ma-1">{{ item.lernende }}</v-chip>
